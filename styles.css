@@ -17,6 +17,35 @@
   --faq-pad-outer: 7vw;
 }
 
+.loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #C271FF;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+.hide {
+  animation: hide 1s;
+  animation-iteration-count: 1;
+}
+
 /* General Styles  */
 
 .body {

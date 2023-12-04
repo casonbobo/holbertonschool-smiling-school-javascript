@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "pic_url": "https://smileschool-api.s3.amazonaws.com/profile_5.jpg",
+        "name": "John Doe",
+        "title": "Founder of SmileSchool",
+        "text": "Those tutorials are concise and go straight to the point. I can’t think of a better place to learn smiling. And it’s so fun!"
+    },
+    {
+        "id": 2,
+        "pic_url": "https://smileschool-api.s3.amazonaws.com/profile_2.jpg",
+        "name": "Nannie Lawrence",
+        "title": "Best \"little smile\" 2017",
+        "text": "ThoseLorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod. Lorem ipsum dolor sit amet, sed do eiusmod."
+    }
+]
