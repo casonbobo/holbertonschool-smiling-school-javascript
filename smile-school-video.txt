@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "title": "Diagonal Smile",
+        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
+        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_1.jpg",
+        "author": "Phillip Massey",
+        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_1.jpg",
+        "star": 4,
+        "duration": "8 min",
+        "topic": "Intermediate",
+        "views": 120,
+        "published_at": 1586734529,
+        "keywords": [
+            "Face",
+            "Diagonal"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Sad Smile",
+        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
+        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_2.jpg",
+        "author": "Nannie Lawrence",
+        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_2.jpg",
+        "star": 5,
+        "duration": "14 min",
+        "topic": "Novice",
+        "views": 420,
+        "published_at": 1586734429,
+        "keywords": [
+            "Sad",
+            "Face"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Natural Smile",
+        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
+        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_3.jpg",
+        "author": "Bruce Walters",
+        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_3.jpg",
+        "star": 2,
+        "duration": "21 min",
+        "topic": "Novice",
+        "views": 310,
+        "published_at": 1586732529,
+        "keywords": [
+            "Face",
+            "Natural",
+            "Beginner"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Happy Smile",
+        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
+        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_4.jpg",
+        "author": "Phillip Massey",
+        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_1.jpg",
+        "star": 4,
+        "duration": "24 min",
+        "topic": "Expert",
+        "views": 13,
+        "published_at": 1586724529,
+        "keywords": [
+            "Face",
+            "Happy"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "None-expressive Smile",
+        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
+        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_2.jpg",
+        "author": "Nannie Lawrence",
+        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_2.jpg",
+        "star": 3,
+        "duration": "9 min",
+        "topic": "Intermediate",
+        "views": 29,
+        "published_at": 1586732529,
+        "keywords": [
+            "Face",
+            "Expression"
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Cry and Smile",
+        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
+        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_4.jpg",
+        "author": "Henry Hughes",
+        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_4.jpg",
+        "star": 5,
+        "duration": "18 min",
+        "topic": "Expert",
+        "views": 321,
+        "published_at": 1586724529,
+        "keywords": [
+            "Face",
+            "Cry"
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Breath first",
+        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
+        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_1.jpg",
+        "author": "Phillip Massey",
+        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_1.jpg",
+        "star": 4,
+        "duration": "16 min",
+        "topic": "Novice",
+        "views": 931,
+        "published_at": 1586734529,
+        "keywords": [
+            "Breath",
+            "Body"
+        ]
+    }
+]
