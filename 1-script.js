@@ -57,7 +57,7 @@ let slideData = [
   document.querySelector('.carousel-inner').innerHTML = slideItems;
 
   //THIS IS THE VIDEO SECTION
-  let videoItems = '<div class="carousel-inner">';
+  let videoItems = '';
 
   function loadDocVideo() {
     var xhttp = new XMLHttpRequest();
@@ -189,78 +189,66 @@ let slideData = [
         ]
       }
     ];
-
-  // Format the items for the video carousel
-  videoData.forEach((item, index) => {
-    videoItems += `
-      <div class="carousel-item ${index === 0 ? 'active' : ''}">
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center justify-content-md-end justify-content-lg-center">
-          <div class="card">
-            <img
-              src="${item.thumb_url}"
-              class="card-img-top"
-              alt="Video thumbnail"
-            />
-            <div class="card-img-overlay text-center">
-              <img
-                src="images/play.png"
-                alt="Play"
-                width="64px"
-                class="align-self-center play-overlay"
-              />
-            </div>
-            <div class="card-body">
-              <h5 class="card-title font-weight-bold">
-                ${item.title}
-              </h5>
-              <p class="card-text text-muted">
-                ${item['sub-title']}
-              </p>
-              <div class="creator d-flex align-items-center">
-                <img
-                  src="${item.author_pic_url}"
-                  alt="Creator of
-                  Video"
-                  width="30px"
-                  class="rounded-circle"
-                />
-                <h6 class="pl-3 m-0 main-color">${item.author}</h6>
-              </div>
-              <div class="info pt-3 d-flex justify-content-between">
-                <div class="rating">
-                  <img
-                    src="images/star_on.png"
-                    alt="star on"
-                    width="15px"
-                  />
-                  <img
-                    src="images/star_on.png"
-                    alt="star on"
-                    width="15px"
-                  />
-                  <img
-                    src="images/star_on.png"
-                    alt="star on"
-                    width="15px"
-                  />
-                  <img
-                    src="images/star_on.png"
-                    alt="star on"
-                    width="15px"
-                  />
-                  <img
-                    src="images/star_off.png"
-                    alt="star on"
-                    width="15px"
-                  />
-                </div>
-                <span class="main-color">${item.duration}</span>
-              </div>
-            </div>
-          </div>
-        </div> 
+    let carouselItems = '';
+    let cardsPerSlide = 4;
+    let slides = Math.ceil(videoData.length / cardsPerSlide);
+    
+    for (let i = 0; i < slides; i++) {
+     let slideContent = '';
+     for (let j = 0; j < cardsPerSlide; j++) {
+       let cardIndex = i * cardsPerSlide + j;
+       if (cardIndex < videoData.length) {
+         let item = videoData[cardIndex];
+         slideContent += `
+           <div class="col-sm-3">
+             <div class="card">
+               <img src="${item.thumb_url}" class="card-img-top" alt="Video thumbnail" />
+               <div class="card-img-overlay text-center">
+                 <img src="images/play.png" alt="Play" width="64px" class="align-self-center play-overlay" />
+               </div>
+               <div class="card-body">
+                 <h5 class="card-title font-weight-bold">${item.title}</h5>
+                 <p class="card-text text-muted">${item['sub-title']}</p>
+                 <div class="creator d-flex align-items-center">
+                   <img src="${item.author_pic_url}" alt="Creator of Video" width="30px" class="rounded-circle" />
+                   <h6 class="pl-3 m-0 main-color">${item.author}</h6>
+                 </div>
+                 <div class="info pt-3 d-flex justify-content-between">
+                   <div class="rating">
+                    <img src="images/star_on.png" alt="star on" width="15px" />
+                    <img src="images/star_on.png" alt="star on" width="15px" />
+                    <img src="images/star_on.png" alt="star on" width="15px" />
+                    <img src="images/star_on.png" alt="star on" width="15px" />
+                    <img src="images/star_off.png" alt="star on" width="15px" />
+                   </div>
+                   <span class="main-color">${item.duration}</span>
+                 </div>
+               </div>
+             </div>
+           </div>
+         `;
+       }
+     }
+     carouselItems += `
+       <div class="carousel-item${i === 0 ? ' active' : ''}">
+         <div class="row">
+           ${slideContent}
+         </div>
+       </div>
+     `;
+    }
+    
+    document.querySelector('.carousel2').innerHTML += `
+    <div class="carousel-inner">
+    ${carouselItems}
       </div>
-    `;
-  });
+  `;
 
-  document.querySelector('.carousel2').innerHTML = videoItems;
+      //<a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev">
+      //   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      //   <span class="sr-only">Previous</span>
+      // </a>
+      // <a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next">
+      //   <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      //   <span class="sr-only">Next</span>
+      // </a>

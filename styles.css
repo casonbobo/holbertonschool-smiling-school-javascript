@@ -929,3 +929,14 @@
     width: 90vw;
   }
 }
+
+.carousel2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+ 
+.carousel2 .card {
+  flex: 0 1 calc(25% - 1em);
+}
+ 
