@@ -2,10 +2,6 @@ $('#carouselExampleControls').on('slide.bs.carousel', function (e) {
     console.log('Quote Slide');
     loadDocQuote();
 });
-$('#carouselExampleControls2').on('slide.bs.carousel', function (e) {
-  console.log('Video Slide');
-  loadDocVideo();
-});
 
 function loadDocQuote() {
   var xhttp = new XMLHttpRequest();
@@ -57,198 +53,100 @@ let slideData = [
   document.querySelector('.carousel-inner').innerHTML = slideItems;
 
   //THIS IS THE VIDEO SECTION
-  let videoItems = '';
+  function getVideos() {
+    $.ajax({
+      url: "https://smileschool-api.hbtn.info/popular-tutorials",
+      method: "GET",
+      success: function(data) {
+        data.forEach(function(item) {
+          var videos = '';
+          videos += `
+                    <img
+                      src="${item.thumb_url}"
+                      class="card-img-top"
+                      alt="Video thumbnail"
+                    />
+                    <div class="card-img-overlay text-center">
+                      <img
+                        src="images/play.png"
+                        alt="Play"
+                        width="64px"
+                        class="align-self-center m-auto play-overlay"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title font-weight-bold">${item.title}</h5>
+                      <p class="card-text text-muted">${item['sub-title']}</p>
+                      <div class="creator d-flex align-items-center">
+                        <img
+                          src="${item.author_pic_url}"
+                          alt="Creator of
+                          Video"
+                          width="30px"
+                          class="rounded-circle"
+                        />
+                        <h6 class="pl-3 m-0 main-color">${item.author}</h6>
+                      </div>
+                      <div class="info pt-3 d-flex justify-content-between">
+                        <div class="rating d-inline-flex">`
+          for (i = 0; i < 5; i++) {
+            if (i < item.star) {
+              videos += `
+                          <img
+                            src="images/star_on.png"
+                            alt="star on"
+                            width="15px"
+                            height="15px"
+                          />`;
+            }
+            else {
+              videos += `
+                          <img
+                            src="images/star_off.png"
+                            alt="star on"
+                            width="15px"
+                            height="15px"
+                          />`;
+            }
+          }
 
-  function loadDocVideo() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "smile-school-video.txt", true);
-    console.log('GET');
-    xhttp.send();
-    console.log('SEND');
+          videos += `
+                        </div>
+                        <span class="main-color">${item.duration}</span>
+                      </div>
+                    </div>`;
+
+          var card = $('<div>').addClass('card p-3').html(videos);
+          $("#video-carousel").append(card);
+        });
+        $("#video-loader").hide();
+
+        $("#video-carousel").slick({
+          infinite: false,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          prevArrow: $('.carousel-control-prev'),
+          nextArrow: $('.carousel-control-next'),
+          responsive: 
+          [
+            {
+              breakpoint: 992,
+              settings: { slidesToShow: 2 }
+            },
+            {
+              breakpoint: 576,
+              settings: { slidesToShow: 1 }
+            }
+          ]
+        });
+        $("#video-loader").hide();
+        $("#video-carousel").removeClass("d-none");
+      },
+      error: function() { $("#video-loader").replaceWith('<h1 style="margin: auto; color: white;">UH OH</h1>'); }
+    });
   }
 
-  let videoData = [
-      {
-        "id": 1,
-        "title": "Diagonal Smile",
-        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
-        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_1.jpg",
-        "author": "Phillip Massey",
-        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_1.jpg",
-        "star": 4,
-        "duration": "8 min",
-        "topic": "Intermediate",
-        "views": 120,
-        "published_at": 1586734529,
-        "keywords": [
-            "Face",
-            "Diagonal"
-        ]
-      },
-      {
-        "id": 2,
-        "title": "Sad Smile",
-        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
-        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_2.jpg",
-        "author": "Nannie Lawrence",
-        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_2.jpg",
-        "star": 5,
-        "duration": "14 min",
-        "topic": "Novice",
-        "views": 420,
-        "published_at": 1586734429,
-        "keywords": [
-            "Sad",
-            "Face"
-        ]
-      },
-      {
-        "id": 3,
-        "title": "Natural Smile",
-        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
-        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_3.jpg",
-        "author": "Bruce Walters",
-        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_3.jpg",
-        "star": 2,
-        "duration": "21 min",
-        "topic": "Novice",
-        "views": 310,
-        "published_at": 1586732529,
-        "keywords": [
-            "Face",
-            "Natural",
-            "Beginner"
-        ]
-      },
-      {
-        "id": 4,
-        "title": "Happy Smile",
-        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
-        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_4.jpg",
-        "author": "Phillip Massey",
-        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_1.jpg",
-        "star": 4,
-        "duration": "24 min",
-        "topic": "Expert",
-        "views": 13,
-        "published_at": 1586724529,
-        "keywords": [
-            "Face",
-            "Happy"
-        ]
-      },
-      {
-        "id": 5,
-        "title": "None-expressive Smile",
-        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
-        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_2.jpg",
-        "author": "Nannie Lawrence",
-        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_2.jpg",
-        "star": 3,
-        "duration": "9 min",
-        "topic": "Intermediate",
-        "views": 29,
-        "published_at": 1586732529,
-        "keywords": [
-            "Face",
-            "Expression"
-        ]
-      },
-      {
-        "id": 6,
-        "title": "Cry and Smile",
-        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
-        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_4.jpg",
-        "author": "Henry Hughes",
-        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_4.jpg",
-        "star": 5,
-        "duration": "18 min",
-        "topic": "Expert",
-        "views": 321,
-        "published_at": 1586724529,
-        "keywords": [
-            "Face",
-            "Cry"
-        ]
-      },
-      {
-        "id": 7,
-        "title": "Breath first",
-        "sub-title": "Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod.",
-        "thumb_url": "https://smileschool-api.s3.amazonaws.com/thumbnail_1.jpg",
-        "author": "Phillip Massey",
-        "author_pic_url": "https://smileschool-api.s3.amazonaws.com/profile_1.jpg",
-        "star": 4,
-        "duration": "16 min",
-        "topic": "Novice",
-        "views": 931,
-        "published_at": 1586734529,
-        "keywords": [
-            "Breath",
-            "Body"
-        ]
-      }
-    ];
-    let carouselItems = '';
-    let cardsPerSlide = 4;
-    let slides = Math.ceil(videoData.length / cardsPerSlide);
-    
-    for (let i = 0; i < slides; i++) {
-     let slideContent = '';
-     for (let j = 0; j < cardsPerSlide; j++) {
-       let cardIndex = i * cardsPerSlide + j;
-       if (cardIndex < videoData.length) {
-         let item = videoData[cardIndex];
-         slideContent += `
-           <div class="col-sm-3">
-             <div class="card">
-               <img src="${item.thumb_url}" class="card-img-top" alt="Video thumbnail" />
-               <div class="card-img-overlay text-center">
-                 <img src="images/play.png" alt="Play" width="64px" class="align-self-center play-overlay" />
-               </div>
-               <div class="card-body">
-                 <h5 class="card-title font-weight-bold">${item.title}</h5>
-                 <p class="card-text text-muted">${item['sub-title']}</p>
-                 <div class="creator d-flex align-items-center">
-                   <img src="${item.author_pic_url}" alt="Creator of Video" width="30px" class="rounded-circle" />
-                   <h6 class="pl-3 m-0 main-color">${item.author}</h6>
-                 </div>
-                 <div class="info pt-3 d-flex justify-content-between">
-                   <div class="rating">
-                    <img src="images/star_on.png" alt="star on" width="15px" />
-                    <img src="images/star_on.png" alt="star on" width="15px" />
-                    <img src="images/star_on.png" alt="star on" width="15px" />
-                    <img src="images/star_on.png" alt="star on" width="15px" />
-                    <img src="images/star_off.png" alt="star on" width="15px" />
-                   </div>
-                   <span class="main-color">${item.duration}</span>
-                 </div>
-               </div>
-             </div>
-           </div>
-         `;
-       }
-     }
-     carouselItems += `
-       <div class="carousel-item${i === 0 ? ' active' : ''}">
-         <div class="row">
-           ${slideContent}
-         </div>
-       </div>
-     `;
-    }
-    
-    document.querySelector('.carousel2').innerHTML += `
-    <div class="carousel-inner">
-    ${carouselItems}
-      </div>
-  `;
 
-      //<a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev">
-      //   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      //   <span class="sr-only">Previous</span>
-      // </a>
-      // <a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next">
-      //   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      //   <span class="sr-only">Next</span>
-      // </a>
+  $(document).ready(function() {
+    getVideos();
+  });
