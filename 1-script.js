@@ -53,14 +53,14 @@ let slideData = [
   document.querySelector('.carousel-inner').innerHTML = slideItems;
 
   //THIS IS THE VIDEO SECTION
-  function getVideos() {
+  function getTutorials() {
     $.ajax({
       url: "https://smileschool-api.hbtn.info/popular-tutorials",
       method: "GET",
       success: function(data) {
         data.forEach(function(item) {
-          var videos = '';
-          videos += `
+          var tutorials = '';
+          tutorials += `
                     <img
                       src="${item.thumb_url}"
                       class="card-img-top"
@@ -75,8 +75,12 @@ let slideData = [
                       />
                     </div>
                     <div class="card-body">
-                      <h5 class="card-title font-weight-bold">${item.title}</h5>
-                      <p class="card-text text-muted">${item['sub-title']}</p>
+                      <h5 class="card-title font-weight-bold">
+                        ${item.title}
+                      </h5>
+                      <p class="card-text text-muted">
+                        ${item['sub-title']}
+                      </p>
                       <div class="creator d-flex align-items-center">
                         <img
                           src="${item.author_pic_url}"
@@ -89,9 +93,10 @@ let slideData = [
                       </div>
                       <div class="info pt-3 d-flex justify-content-between">
                         <div class="rating d-inline-flex">`
+  
           for (i = 0; i < 5; i++) {
             if (i < item.star) {
-              videos += `
+              tutorials += `
                           <img
                             src="images/star_on.png"
                             alt="star on"
@@ -100,7 +105,7 @@ let slideData = [
                           />`;
             }
             else {
-              videos += `
+              tutorials += `
                           <img
                             src="images/star_off.png"
                             alt="star on"
@@ -109,44 +114,46 @@ let slideData = [
                           />`;
             }
           }
-
-          videos += `
+  
+          tutorials += `
                         </div>
                         <span class="main-color">${item.duration}</span>
                       </div>
                     </div>`;
-
-          var card = $('<div>').addClass('card p-3').html(videos);
-          $("#video-carousel").append(card);
+  
+          var card = $('<div>').addClass('card p-3').html(tutorials);
+          $("#tutorial-carousel").append(card);
         });
-        $("#video-loader").hide();
-
-        $("#video-carousel").slick({
+        $("#tutorial-loader").hide();
+  
+        $("#tutorial-carousel").slick({
           infinite: false,
           slidesToShow: 4,
           slidesToScroll: 1,
           prevArrow: $('.carousel-control-prev'),
           nextArrow: $('.carousel-control-next'),
-          responsive: 
-          [
+          responsive: [
             {
               breakpoint: 992,
-              settings: { slidesToShow: 2 }
+              settings: {
+                slidesToShow: 2
+              }
             },
             {
               breakpoint: 576,
-              settings: { slidesToShow: 1 }
+              settings: {
+                slidesToShow: 1
+              }
             }
           ]
         });
-        $("#video-loader").hide();
-        $("#video-carousel").removeClass("d-none");
+        $("#tutorial-loader").hide();
+        $("#tutorial-carousel").removeClass("d-none");
       },
-      error: function() { $("#video-loader").replaceWith('<h1 style="margin: auto; color: white;">UH OH</h1>'); }
+      error: function() { $("#tutorial-loader").replaceWith('<h1 style="margin: auto; color: white;">ERROR</h1>'); }
     });
   }
 
-
   $(document).ready(function() {
-    getVideos();
+    getTutorials();
   });
